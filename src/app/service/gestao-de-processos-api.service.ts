@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpParams, HttpHeaders, HttpClient } from "@angular/common/http";
+import 'rxjs/add/operator/map';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,7 @@ export class GestaoDeProcessosApiService {
         };
 
         let urlCompleta = this.serverApi + 'listarUsuarios';
-        return this.http.get(urlCompleta, httpOptions);
+        return this.http.get(urlCompleta, httpOptions).map(res => res);
     }
 
     postMudarStatus(id:number){

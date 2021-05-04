@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { GestaoDeProcessosApiService } from '../service/gestao-de-processos-api.service';
 
 @Component({
@@ -13,30 +14,45 @@ export class RegistrarUsuarioComponent implements OnInit {
   email:string;
   competencias:string [];
   telefone:string;
+  formulario: FormGroup;
 
-  constructor(private api:GestaoDeProcessosApiService) { }
+  constructor(private api:GestaoDeProcessosApiService,
+              private formBuilder:FormBuilder) { }
 
   ngOnInit(): void {
-    this.registarUsuario();
+    this.formulario = this.formBuilder.group({
+      nome:['',[Validators.required]],
+      email:['',[Validators.required,Validators.email]],
+      cpf:['',[Validators.required]],
+      competencia:['',[Validators.required]],
+      telefone:['',]
+    });
   }
 
   ionViewWillEnter(){
-    this.registarUsuario();
+    this.formulario = this.formBuilder.group({
+      nome:['',[Validators.required]],
+      email:['',[Validators.required,Validators.email]],
+      cpf:['',[Validators.required]],
+      competencia:['',[Validators.required]],
+      telefone:['',]
+    });
   }
 
   registarUsuario(){
+    console.log(this.formulario.get('competencia').value.toString());
     return new Promise(resolve => {
       let dados = {
-        'nome'        : 'melque',
-        'email'       : 'mel@mel.com',
-        'cpf'         : '11343600001',
-        'competencia' : 'opa',
-        'telefone'    : '8299108039',
+        'nome'        : this.formulario.get('nome').value,
+        'email'       : this.formulario.get('email').value,
+        'cpf'         : this.formulario.get('cpf').value,
+        'competencia' : this.formulario.get('competencia').value.toString(),
+        'telefone'    : this.formulario.get('telefone').value,
       };
 
       this.api.postRegistarUsuario(dados).subscribe((res)=>{
         if(res['success']){
-          console.log("Sucesso ao Registar");
+          this.ionViewWillEnter();
         }else{
           console.log("Erro ao Registar");
         }

@@ -1,1 +1,42 @@
-<p>validar-usuario works!</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gestão de Processos SENAI</title>
+</head>
+<body>
+  <div class="card container h-100">
+    <div class="card-body">
+      <h5 class="card-title">Validar Usuários</h5>
+    </div>
+  </div>
+    
+  <div  class="container">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Nome</th>
+          <th scope="col">Email</th>
+          <th scope="col">CPF</th>
+          <th scope="col">Competencia(s)</th>
+          <th scope="col">Telefone</th>
+          <th scope="col">Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let usuario of todosUsuarios">
+          <th>{{ usuario.nome }}</th>
+          <td>{{ usuario.emil }}</td>
+          <td>{{ usuario.cpf }}</td>
+          <td>{{ usuario.competencias }}</td>
+          <td>{{ usuario.telefone }}</td>
+
+          <td><button type="button" class="btn btn-secondary" (click)="mudarStatus(usuario.id)">{{ usuario.status }}</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div> 
+</body>
+</html>

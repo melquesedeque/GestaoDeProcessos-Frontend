@@ -6,6 +6,7 @@ import { GestaoDeProcessosApiService } from './service/gestao-de-processos-api.s
 import { ValidarUsuarioComponent } from './validar/validar-usuario.component';
 import { AppRoutingModule } from "./app-routing.module";
 import { HttpClientModule } from "@angular/common/http";
+import { FormsModule,ReactiveFormsModule } from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -16,7 +17,10 @@ import { HttpClientModule } from "@angular/common/http";
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule
+
   ],
   providers: [
     GestaoDeProcessosApiService

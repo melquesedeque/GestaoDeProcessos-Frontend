@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { GestaoDeProcessosApiService } from '../service/gestao-de-processos-api.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-validar-usuario',
@@ -10,35 +11,37 @@ export class ValidarUsuarioComponent implements OnInit {
 
   todosUsuarios:any = [];
 
-  constructor(private Api:GestaoDeProcessosApiService) { }
+  constructor(private Api:GestaoDeProcessosApiService,
+              private route:Router) { }
 
   ngOnInit(): void {
     this.todosUsuarios = [];
     this.validarUsuario();
-    this.mudarStatus(1);
+    
   }
 
   ionViewWillEnter(){
     this.todosUsuarios = [];
     this.validarUsuario();
-    this.mudarStatus(1);
   }
 
   validarUsuario() {
-    this.Api.getListarUsuarios().subscribe((res)=>{
-      if(res != null){
-        this.todosUsuarios.push(res);
-        console.log("Sucesso",this.todosUsuarios);
+    this.Api.getListarUsuarios().subscribe(data =>{
+      if(data != null){
+        for (let user of data['result']) {
+          this.todosUsuarios.push(user);
+        }
       }else{
         console.log("Erro");
       }
-    });
+    })
   }
 
   mudarStatus(id:any){
+    console.log("opa"+id);
     this.Api.postMudarStatus(id).subscribe((res)=>{
       if(res['success']){
-        console.log("Sucesso Mudar Status");
+        this.ngOnInit();
       }else{
         console.log("Erro Mudar Status");
       }
