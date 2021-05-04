@@ -1,2 +1,7 @@
+------------------  Gestão de processos SENAI
+
+Consulta um API em PHP com Laravel (GestaoDeProcessosSenhai-Backend)
+
 instalar Dependecias
-- npm install rxjs@6 rxjs-compat@6 --save
+- npm install
+- ng serve --open
