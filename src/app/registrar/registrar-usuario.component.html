@@ -14,7 +14,7 @@
     </div>
     
     <form id="form" [formGroup]="formulario">
-        <div class="container" style="margin-top: 5%;">
+        <div class="container" style="margin-top: 2%;">
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="basic-addon1">Nome</span>
@@ -31,13 +31,13 @@
                 <div class="input-group-prepend">
                 <span class="input-group-text" id="basic-addon1">CPF</span>
                 </div>
-                <input type="text" formControlName="cpf" class="form-control" aria-label="Usuário" aria-describedby="basic-addon1">
+                <input type="text" mask="000.000.000-00" formControlName="cpf" class="form-control" aria-label="Usuário" aria-describedby="basic-addon1">
             </div>
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="basic-addon1">Competência(s)</span>
                 </div>
-                <select formControlName="competencia" class="form-select" size="3" aria-label="size 3 select example" multiple>
+                <select formControlName="competencia" class="form-select" size="3" limit="3" maxlength="3" aria-label="size 3 select example" multiple>
                     <option value="Gerenciador de Projetos">Gerênciador de Projetos</option>
                     <option value="Controle Financeiro">Controle Financeiro</option>
                     <option value="Controle de Estoque">Controle de Estoque</option>
@@ -50,7 +50,7 @@
                 <div class="input-group-prepend">
                 <span class="input-group-text" id="basic-addon1">Telefone</span>
                 </div>
-                <input formControlName="telefone" type="text" class="form-control" aria-describedby="basic-addon1">
+                <input formControlName="telefone" mask="(00) 00000-0000" type="text" class="form-control" aria-describedby="basic-addon1">
             </div>
         </div>        
     </form>

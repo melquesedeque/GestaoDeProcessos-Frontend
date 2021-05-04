@@ -20,6 +20,15 @@ export class GestaoDeProcessosApiService {
         return this.http.get(urlCompleta, httpOptions).map(res => res);
     }
 
+    getListarUsuariosFiltro(nome:string){
+        const httpOptions = {
+            headers: new HttpHeaders({'Content-Type': 'application/json'})
+        };
+
+        let urlCompleta = this.serverApi + 'filtrarPorNome/'+nome;
+        return this.http.get(urlCompleta, httpOptions);
+    }
+
     postMudarStatus(id:number){
         const httpOptions = {
             headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -37,4 +46,6 @@ export class GestaoDeProcessosApiService {
         let urlCompleta = this.serverApi + 'registarUsuario';
         return this.http.post(urlCompleta, JSON.stringify(dados), httpOptions);
     }
+
+
 }

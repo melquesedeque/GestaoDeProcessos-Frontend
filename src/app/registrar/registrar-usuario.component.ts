@@ -40,7 +40,6 @@ export class RegistrarUsuarioComponent implements OnInit {
   }
 
   registarUsuario(){
-    console.log(this.formulario.get('competencia').value.toString());
     return new Promise(resolve => {
       let dados = {
         'nome'        : this.formulario.get('nome').value,
@@ -52,9 +51,12 @@ export class RegistrarUsuarioComponent implements OnInit {
 
       this.api.postRegistarUsuario(dados).subscribe((res)=>{
         if(res['success']){
+          alert("Cadastro Realizado!");
           this.ionViewWillEnter();
+        }else if(res['error']){
+          alert("CPF já cadastrado!");
         }else{
-          console.log("Erro ao Registar");
+          alert("Erro ao Cadastrar Usuário!");
         }
         resolve(true);
       })

@@ -7,6 +7,9 @@ import { ValidarUsuarioComponent } from './validar/validar-usuario.component';
 import { AppRoutingModule } from "./app-routing.module";
 import { HttpClientModule } from "@angular/common/http";
 import { FormsModule,ReactiveFormsModule } from "@angular/forms";
+import { NgxMaskModule, IConfig } from 'ngx-mask'
+
+export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
 
 @NgModule({
   declarations: [
@@ -19,7 +22,8 @@ import { FormsModule,ReactiveFormsModule } from "@angular/forms";
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxMaskModule.forRoot(),
 
   ],
   providers: [
